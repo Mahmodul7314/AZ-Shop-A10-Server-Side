@@ -33,9 +33,9 @@ async function run() {
 
     const productCollection =client.db('productDB').collection('product');
 
+   
 
-
-  
+  //this is for 4 card items
     app.get('/product/:brandName', async (req, res) => {
       const brandName = req.params.brandName;
       const query = { brandName: brandName }; // Use the variable directly
