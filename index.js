@@ -33,7 +33,7 @@ async function run() {
 
     const productCollection =client.db('productDB').collection('product');
 
-   
+  
 
   //this is for 4 card items
     app.get('/product/:brandName', async (req, res) => {
@@ -44,6 +44,24 @@ async function run() {
     });
 
 
+    //this is for all product
+    app.get('/product',async(req, res)=>{
+      const cursor = productCollection.find();
+      const result = await cursor.toArray();
+      res.send(result);
+    })
+
+
+
+
+
+    //this is for single product for update 
+    app.get('/product/:id', async(req, res)=>{
+      const id = req.params.id;
+      const query = {_id: new ObjectId(id)}
+      const result = await productCollection.findOne(query);
+      res.send(result)
+    })
 
 
     app.post('/product', async(req, res) =>{
